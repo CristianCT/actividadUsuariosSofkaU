@@ -25,6 +25,19 @@ public class UsuarioService {
         return usuarioRepository.save(usuario);
     }
 
+    public UsuarioModel actualizarUsuario(Long id, UsuarioModel newUsuario){
+        try{
+            Optional<UsuarioModel> usuario = usuarioRepository.findById(id);
+            newUsuario.setId(id);
+            newUsuario.setNombre(newUsuario.getNombre()!=null?newUsuario.getNombre():usuario.get().getNombre());
+            newUsuario.setEmail(newUsuario.getEmail()!=null?newUsuario.getEmail():usuario.get().getEmail());
+            newUsuario.setPrioridad(newUsuario.getPrioridad()!=null?newUsuario.getPrioridad():usuario.get().getPrioridad());
+            return usuarioRepository.save(newUsuario);
+        }catch(Exception e){
+            return newUsuario;
+        }
+    }
+
     // Optional es en caso de que no encuentre un registro con ese ID, devuelve algo
     public Optional<UsuarioModel> obtenerPorId(Long id){
         return usuarioRepository.findById(id);
