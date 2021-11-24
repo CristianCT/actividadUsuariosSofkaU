@@ -22,11 +22,7 @@ public class UsuarioController {
 
     @GetMapping()
     public ArrayList<UsuarioModel> obtenerUsuarios(){
-        try{
-            return usuarioService.obtenerUsuarios();
-        }catch (Exception e) {
-            throw new ResponseStatusException(HttpStatus.NOT_FOUND, "Error al digitar los datos", e);
-        }
+        return usuarioService.obtenerUsuarios();
     }
 
     @PostMapping
@@ -49,33 +45,22 @@ public class UsuarioController {
 
     @GetMapping( path = "/{id}")
     public Optional<UsuarioModel> obtenerUsuarioPorId(@PathVariable("id") Long id){
-        try{
-            return usuarioService.obtenerPorId(id);
-        }catch (Exception e) {
-            throw new ResponseStatusException(HttpStatus.NOT_FOUND, "Error al digitar los datos", e);
-        }
+        return usuarioService.obtenerPorId(id);
     }
 
     @GetMapping( path = "/query")
     public ArrayList<UsuarioModel> obtenerUsuariosPorPrioridad(@RequestParam("prioridad") Integer prioridad){
-        try{
-            return usuarioService.obtenerPorPrioridad(prioridad);
-        }catch (Exception e) {
-            throw new ResponseStatusException(HttpStatus.NOT_FOUND, "Error al digitar los datos", e);
-        }
+        return usuarioService.obtenerPorPrioridad(prioridad);
+
     }
 
     @DeleteMapping("/{id}")
     public String eliminarPorId(@PathVariable("id") Long id){
-        try{
-            boolean isDeleted = usuarioService.eliminarUsuario(id);
-            if(isDeleted){
-                return "Se eliminó el usuario con ID: " + id;
-            } else {
-                return "No se pudo eliminar el usuario con ID: " + id;
-            }
-        }catch (Exception e) {
-            throw new ResponseStatusException(HttpStatus.NOT_FOUND, "Error al digitar los datos", e);
+        boolean isDeleted = usuarioService.eliminarUsuario(id);
+        if(isDeleted){
+            return "Se eliminó el usuario con ID: " + id;
+        } else {
+            return "No se pudo eliminar el usuario con ID: " + id;
         }
     }
 }
