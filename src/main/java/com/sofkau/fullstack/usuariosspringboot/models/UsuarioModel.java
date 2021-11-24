@@ -1,5 +1,7 @@
 package com.sofkau.fullstack.usuariosspringboot.models;
 
+import com.sun.istack.NotNull;
+
 import javax.persistence.*;
 
 @Entity // Indicar que se va a crear una entidad
@@ -11,8 +13,13 @@ public class UsuarioModel {
     @Column(unique = true, nullable = false) // Anotación para indicar que el valor de la columna debe ser unico y no nulo
     private Long id;
 
+    @Column(nullable = false)
     private String nombre;
+
+    @Column(nullable = false)
     private String email;
+
+    @Column(nullable = false)
     private Integer prioridad;
 
     public Long getId() {
