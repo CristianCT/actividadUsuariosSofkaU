@@ -30,7 +30,7 @@ public class UsuarioController {
         try{
             return usuarioService.guardarUsuario(usuario);
         }catch (Exception e) {
-            throw new ResponseStatusException(HttpStatus.NOT_FOUND, "Error al digitar los datos", e);
+            throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "Error al digitar los datos", e);
         }
     }
 
@@ -39,7 +39,7 @@ public class UsuarioController {
         try{
             return usuarioService.actualizarUsuario(id, usuario);
         }catch (Exception e) {
-            throw new ResponseStatusException(HttpStatus.NOT_FOUND, "Error al digitar los datos", e);
+            throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "Error al digitar los datos", e);
         }
     }
 
